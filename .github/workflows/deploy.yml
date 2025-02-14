@@ -19,7 +19,8 @@ jobs:
         username: ${{ secrets.SITE1_FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
-        server-dir: ${{ secrets.SITE1_FTP_PATH }}
+        server-dir: /public_html/wp-content/plugins/societa-trasparente/
+        dangerous-clean-slate: true
         exclude: |
           **/.git*
           **/.github/**
@@ -40,7 +41,8 @@ jobs:
         username: ${{ secrets.SITE2_FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
-        server-dir: ${{ secrets.SITE2_FTP_PATH }}
+        server-dir: /public_html/wp-content/plugins/societa-trasparente/
+        dangerous-clean-slate: true
         exclude: |
           **/.git*
           **/.github/**
@@ -61,7 +63,8 @@ jobs:
         username: ${{ secrets.SITE3_FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
-        server-dir: ${{ secrets.SITE3_FTP_PATH }}
+        server-dir: /public_html/wp-content/plugins/societa-trasparente/
+        dangerous-clean-slate: true
         exclude: |
           **/.git*
           **/.github/**
@@ -82,7 +85,8 @@ jobs:
         username: ${{ secrets.SITE4_FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
-        server-dir: ${{ secrets.SITE4_FTP_PATH }}
+        server-dir: /public_html/wp-content/plugins/societa-trasparente/
+        dangerous-clean-slate: true
         exclude: |
           **/.git*
           **/.github/**
@@ -103,7 +107,8 @@ jobs:
         username: ${{ secrets.SITE5_FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./
-        server-dir: ${{ secrets.SITE5_FTP_PATH }}
+        server-dir: /public_html/wp-content/plugins/societa-trasparente/
+        dangerous-clean-slate: true
         exclude: |
           **/.git*
           **/.github/**
