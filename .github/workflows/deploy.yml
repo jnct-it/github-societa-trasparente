@@ -1,0 +1,38 @@
+name: Deploy Plugin to Multiple Sites
+
+on:
+  push:
+    branches:
+      - main  # Esegui il deploy solo sul branch "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        site:
+          - { name: "Lucca", user: "${{ secrets.SITE1_FTP_USER }}", host: "${{ secrets.SITE1_FTP_HOST }}", path: "${{ secrets.SITE1_FTP_PATH }}" }
+          - { name: "Pistoia", user: "${{ secrets.SITE2_FTP_USER }}", host: "${{ secrets.SITE2_FTP_HOST }}", path: "${{ secrets.SITE2_FTP_PATH }}" }
+          - { name: "Lecce", user: "${{ secrets.SITE3_FTP_USER }}", host: "${{ secrets.SITE3_FTP_HOST }}", path: "${{ secrets.SITE3_FTP_PATH }}" }
+          - { name: "Rieti", user: "${{ secrets.SITE4_FTP_USER }}", host: "${{ secrets.SITE4_FTP_HOST }}", path: "${{ secrets.SITE4_FTP_PATH }}" }
+          - { name: "Aosta", user: "${{ secrets.SITE5_FTP_USER }}", host: "${{ secrets.SITE5_FTP_HOST }}", path: "${{ secrets.SITE5_FTP_PATH }}" }
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Deploy to ${{ matrix.site.name }}
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ${{ matrix.site.host }}
+        username: ${{ matrix.site.user }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        server-dir: ${{ matrix.site.path }}
+        exclude: |
+          **/.git*
+          **/.github/**
+          **/node_modules/**
+          **/composer.json
+          **/README.md
+        timeout: 120
