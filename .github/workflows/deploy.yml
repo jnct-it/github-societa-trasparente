@@ -3,7 +3,7 @@ name: Deploy Plugin to Multiple Sites
 on:
   push:
     branches:
-      - main  # Esegui il deploy solo sul branch "main"
+      - main
 
 jobs:
   deploy:
@@ -11,11 +11,29 @@ jobs:
     strategy:
       matrix:
         site:
-          - { name: "Lucca", user: "${{ secrets.SITE1_FTP_USER }}", host: "${{ secrets.SITE1_FTP_HOST }}", path: "${{ secrets.SITE1_FTP_PATH }}" }
-          - { name: "Pistoia", user: "${{ secrets.SITE2_FTP_USER }}", host: "${{ secrets.SITE2_FTP_HOST }}", path: "${{ secrets.SITE2_FTP_PATH }}" }
-          - { name: "Lecce", user: "${{ secrets.SITE3_FTP_USER }}", host: "${{ secrets.SITE3_FTP_HOST }}", path: "${{ secrets.SITE3_FTP_PATH }}" }
-          - { name: "Rieti", user: "${{ secrets.SITE4_FTP_USER }}", host: "${{ secrets.SITE4_FTP_HOST }}", path: "${{ secrets.SITE4_FTP_PATH }}" }
-          - { name: "Aosta", user: "${{ secrets.SITE5_FTP_USER }}", host: "${{ secrets.SITE5_FTP_HOST }}", path: "${{ secrets.SITE5_FTP_PATH }}" }
+          - { name: "Lucca", user: "${{ env.SITE1_FTP_USER }}", host: "${{ env.SITE1_FTP_HOST }}", path: "${{ env.SITE1_FTP_PATH }}" }
+          - { name: "Pistoia", user: "${{ env.SITE2_FTP_USER }}", host: "${{ env.SITE2_FTP_HOST }}", path: "${{ env.SITE2_FTP_PATH }}" }
+          - { name: "Lecce", user: "${{ env.SITE3_FTP_USER }}", host: "${{ env.SITE3_FTP_HOST }}", path: "${{ env.SITE3_FTP_PATH }}" }
+          - { name: "Rieti", user: "${{ env.SITE4_FTP_USER }}", host: "${{ env.SITE4_FTP_HOST }}", path: "${{ env.SITE4_FTP_PATH }}" }
+          - { name: "Aosta", user: "${{ env.SITE5_FTP_USER }}", host: "${{ env.SITE5_FTP_HOST }}", path: "${{ env.SITE5_FTP_PATH }}" }
+
+    env:
+      SITE1_FTP_USER: ${{ secrets.SITE1_FTP_USER }}
+      SITE1_FTP_HOST: ${{ secrets.SITE1_FTP_HOST }}
+      SITE1_FTP_PATH: ${{ secrets.SITE1_FTP_PATH }}
+      SITE2_FTP_USER: ${{ secrets.SITE2_FTP_USER }}
+      SITE2_FTP_HOST: ${{ secrets.SITE2_FTP_HOST }}
+      SITE2_FTP_PATH: ${{ secrets.SITE2_FTP_PATH }}
+      SITE3_FTP_USER: ${{ secrets.SITE3_FTP_USER }}
+      SITE3_FTP_HOST: ${{ secrets.SITE3_FTP_HOST }}
+      SITE3_FTP_PATH: ${{ secrets.SITE3_FTP_PATH }}
+      SITE4_FTP_USER: ${{ secrets.SITE4_FTP_USER }}
+      SITE4_FTP_HOST: ${{ secrets.SITE4_FTP_HOST }}
+      SITE4_FTP_PATH: ${{ secrets.SITE4_FTP_PATH }}
+      SITE5_FTP_USER: ${{ secrets.SITE5_FTP_USER }}
+      SITE5_FTP_HOST: ${{ secrets.SITE5_FTP_HOST }}
+      SITE5_FTP_PATH: ${{ secrets.SITE5_FTP_PATH }}
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
 
     steps:
     - name: Checkout repository
@@ -26,7 +44,7 @@ jobs:
       with:
         server: ${{ matrix.site.host }}
         username: ${{ matrix.site.user }}
-        password: ${{ secrets.FTP_PASSWORD }}
+        password: ${{ env.FTP_PASSWORD }}
         local-dir: ./
         server-dir: ${{ matrix.site.path }}
         exclude: |
