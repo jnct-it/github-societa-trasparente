@@ -1,0 +1,57 @@
+/* Button base styles */
+.elementor-widget-button .elementor-button.elementor-size-lg {
+    background-color: #FFFFFF !important;
+    font-family: "Titillium Web", Sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    line-height: 24px !important;
+    padding: 15px 30px !important;
+    border-radius: 4px !important;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Button colors */
+.elementor-widget-button .elementor-button,
+.elementor-widget-button .elementor-button .elementor-button-icon {
+    fill: var(--e-global-color-dcb3b27) !important;
+    color: var(--e-global-color-dcb3b27) !important;
+}
+
+/* Button hover */
+.elementor-widget-button .elementor-button:hover {
+    background-color: #f5f5f5 !important;
+}
+
+/* Icon styles */
+.elementor-widget-button .elementor-button .elementor-button-icon {
+    margin-right: 10px !important;
+}
+.elementor-widget-button .elementor-button .elementor-button-icon svg {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+/* Document wrapper spacing */
+.elementor-document-wrapper {
+    margin-bottom: 30px;
+}
+.elementor-document-wrapper:last-child {
+    margin-bottom: 0;
+}
+
+/* Document text elements */
+.document-title,
+.document-description {
+    margin: 0;
+    padding: 0 0 10px 0;
+}
+
+/* Allineamento a sinistra del pulsante */
+.elementor-widget-button .elementor-button {
+    text-align: left !important;
+}
+
+/* In caso il wrapper centri il contenuto, forziamo l'allineamento a sinistra anche qui */
+.elementor-button-wrapper {
+    text-align: left !important;
+}

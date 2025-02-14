@@ -1,0 +1,190 @@
+/* Base styles */
+:root {
+    --doc-border-color: #ddd;
+    --doc-bg-color: #f8f8f8;
+    --doc-danger-color: #dc3232;
+    --doc-primary-color: #2271b1;
+}
+
+/* Common container styles */
+.document-container {
+    margin: 15px 0;
+    padding: 10px;
+    background: var(--doc-bg-color);
+    border: 1px solid var(--doc-border-color);
+    border-radius: 4px;
+}
+
+/* Editor heights */
+body.post-type-documento .wp-editor-container,
+body.post-type-documento #document_description_ifr,
+body.post-type-documento .mce-container iframe,
+body.post-type-documento .mce-edit-area {
+    height: 150px !important;
+    min-height: 150px !important;
+    max-height: 150px !important;
+    display: block;
+    overflow-y: auto;
+}
+
+body.toplevel_page_document-publisher .wp-editor-container,
+body.toplevel_page_document-publisher #document_description_ifr,
+body.toplevel_page_document-publisher .mce-container iframe,
+body.toplevel_page_document-publisher .mce-edit-area {
+    height: 150px;
+    min-height: 150px;
+    max-height: 150px;
+}
+
+/* Restore PDF preview height */
+.document-preview-thumbnail object[type="application/pdf"],
+.document-preview-container object,
+.document-preview-container embed,
+.document-preview-container iframe {
+    width: 100%;
+    height: 500px;
+    min-height: 500px;
+    border: 1px solid #ddd;
+}
+
+/* Progress bar */
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--doc-primary-color);
+}
+
+/* Document actions */
+.document-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Common styles */
+.document-details-wrapper .current-file,
+.upload-progress-wrapper,
+.document-preview {
+    margin: 15px 0;
+    padding: 10px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Button styles */
+.document-details-wrapper .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 10px;
+}
+
+/* Delete button styles */
+.document-details-wrapper .delete-document,
+.document-preview .remove-document {
+    color: #dc3232;
+    border-color: #dc3232;
+}
+
+.document-details-wrapper .delete-document:hover,
+.document-preview .remove-document:hover {
+    background: #dc3232;
+    color: #fff;
+}
+
+/* Progress bar styles */
+#progress-bar {
+    width: 100%;
+    height: 20px;
+    border-radius: 3px;
+}
+
+#progress-bar::-webkit-progress-bar {
+    background-color: #f0f0f0;
+    border-radius: 3px;
+}
+
+#progress-bar::-webkit-progress-value,
+#progress-bar::-moz-progress-bar {
+    background-color: #2271b1;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+/* Document preview */
+.document-preview {
+    margin-top: 15px;
+    padding: 10px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.document-preview .filename {
+    flex-grow: 1;
+}
+
+.document-preview .remove-document {
+    color: #dc3232;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+.document-preview .remove-document:hover {
+    color: #a00;
+}
+
+.document-preview .dashicons {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+}
+
+/* Progress info */
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #666;
+}
+
+.upload-progress-wrapper {
+    margin: 20px 0;
+    padding: 15px;
+    background: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.progress-bar-container {
+    width: 100%;
+}
+
+.document-upload-wrapper {
+    margin: 15px 0;
+}
+
+.document-upload-wrapper .button {
+    margin-right: 10px;
+}
+
+/* Editor styles - Fixed height for specific pages */
+body.post-type-documento #document_description_ifr,
+body.post-type-documento .mce-container iframe {
+    min-height: 800px;
+    height: 800px;
+}
+
+/* Hide permalink section */
+#edit-slug-box {
+    display: none;
+}
