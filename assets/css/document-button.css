@@ -43,8 +43,19 @@
 .document-title,
 .document-description {
     margin: 0;
-    padding: 0 0 10px 0;
+    padding: 0 0 25px 0;
+    font-family: "Titillium Web", Sans-serif !important;
 }
+
+.document-title {
+    font-size: 22px!important;
+    padding-top: 30px!important;
+}
+
+.document-description {
+    font-size: 17px;
+}
+
 
 /* Allineamento a sinistra del pulsante */
 .elementor-widget-button .elementor-button {

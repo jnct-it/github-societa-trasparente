@@ -2,7 +2,7 @@
 /*
 Plugin Name: Gestione Documenti Amministrazione Trasparente
 Description: Gestione e pubblicazione documenti per la sezione Amministrazione Trasparente
-Version: 1.85
+Version: 1.86
 Author: Andrea Gouchon
 Text Domain: doc-publisher
 Domain Path: /languages

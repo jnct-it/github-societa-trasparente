@@ -452,7 +452,7 @@ protected function render_document_button($doc, $doc_url) {
         <?php endif; ?>
         
         <?php if (!empty($description)): ?>
-            <div class="document-description"><?php echo wp_kses_post($description); ?></div>
+            <p class="document-description"><?php echo wp_kses_post($description); ?></p>
         <?php endif; ?>
         
         <div class="elementor-element elementor-widget elementor-widget-button">

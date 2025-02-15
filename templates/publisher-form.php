@@ -7,9 +7,48 @@ if ( ! defined( 'ABSPATH' ) ) exit;
     <?php settings_errors('document_publisher'); ?>
     
     <form id="document-publisher-form" method="post" enctype="multipart/form-data" class="document-publisher-form">
-        <?php wp_nonce_field('publish_document_nonce', 'nonce'); ?>
+        <?php wp_nonce_field('publish_document_action', 'publish_document_nonce'); ?>
+        
+        <!-- Choose file source -->
+        <p>
+            <label>
+                <input type="radio" name="upload_choice" value="upload" checked>
+                Carica file esterno
+            </label>
+            <label>
+                <input type="radio" name="upload_choice" value="gallery">
+                Seleziona dalla Media Gallery
+            </label>
+        </p>
         
         <table class="form-table">
+            <!-- File upload section -->
+            <tr id="upload-file-section">
+                <th scope="row">
+                    <label for="document_file">Seleziona File</label>
+                </th>
+                <td>
+                    <input type="file" 
+                           id="document_file" 
+                           name="document_file" 
+                           accept=".pdf,.doc,.docx,.xls,.xlsx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
+                           required>
+                    <p class="description" id="file-size">File supportati: PDF, DOC, DOCX, XLS, XLSX</p>
+                </td>
+            </tr>
+
+            <!-- Media library section -->
+            <tr id="media-gallery-section" style="display:none;">
+                <th scope="row">
+                    <label for="select-media-button">Seleziona dalla Media Gallery</label>
+                </th>
+                <td>
+                    <button type="button" id="select-media-button" class="button">Scegli dalla Media Gallery</button>
+                    <input type="hidden" id="document_url" name="document_url">
+                    <div id="selected-media-preview"></div>
+                </td>
+            </tr>
+
             <!-- Pagina di Pubblicazione -->
             <tr>
                 <th scope="row">
@@ -38,21 +77,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
                     // Aggiunge l'attributo required al tag <select>
                     echo str_replace('<select', '<select required', $dropdown);
                     ?>
-                </td>
-            </tr>
-
-            <!-- Selezione del File -->
-            <tr>
-                <th scope="row">
-                    <label for="document_file">Seleziona File</label>
-                </th>
-                <td>
-                    <input type="file" 
-                           id="document_file" 
-                           name="document_file" 
-                           accept=".pdf,.doc,.docx,.xls,.xlsx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" 
-                           required>
-                    <p class="description" id="file-size">File supportati: PDF, DOC, DOCX, XLS, XLSX</p>
                 </td>
             </tr>
 

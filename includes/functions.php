@@ -24,19 +24,27 @@ function handle_document_submission() {
     if (!current_user_can('edit_posts')) {
         wp_send_json_error('Permessi insufficienti');
     }
-
-    $upload_result = handle_file_upload();
+    
+    // New condition: if a file URL from the Media Gallery is provided, use it
+    if (!empty($_FILES['document_file']['name'])) {
+        $upload_result = handle_file_upload();
+    } elseif (isset($_POST['document_url']) && !empty($_POST['document_url'])) {
+        $upload_result = array('url' => sanitize_text_field($_POST['document_url']));
+    } else {
+        wp_send_json_error('Nessun file selezionato');
+    }
+    
     if (is_wp_error($upload_result)) {
         wp_send_json_error($upload_result->get_error_message());
     }
-
+    
     $post_id = create_document_post($upload_result);
     if (is_wp_error($post_id)) {
         wp_send_json_error($post_id->get_error_message());
     }
-
+    
     update_page_modification_date($_POST['target_page']);
-
+    
     // Save display title and description
     if (!empty($_POST['document_display_title'])) {
         update_post_meta($post_id, '_document_display_title', sanitize_text_field($_POST['document_display_title']));
@@ -44,9 +52,9 @@ function handle_document_submission() {
     if (!empty($_POST['document_description'])) {
         update_post_meta($post_id, '_document_description', wp_kses_post($_POST['document_description']));
     }
-
+    
     update_document_order($post_id, $_POST['target_page'], $_POST['preceding_document']);
-
+    
     wp_send_json_success();
 }
 
@@ -199,15 +207,20 @@ function handle_file_upload() {
 }
 
 function create_document_post($upload_result) {
+    // Build the meta input, adding the attachment ID if available
+    $meta_input = array(
+        '_document_url'   => $upload_result['url'],
+        '_target_page'    => intval($_POST['target_page'])
+    );
+    if (isset($upload_result['attachment_id'])) {
+        $meta_input['_document_attachment_id'] = $upload_result['attachment_id'];
+    }
+    
     $post_data = array(
         'post_title'    => sanitize_text_field($_POST['document_name']),
         'post_status'   => 'publish',
         'post_type'     => 'documento',
-        'meta_input'    => array(
-            '_document_url' => $upload_result['url'],
-            '_document_attachment_id' => $upload_result['attachment_id'],
-            '_target_page' => intval($_POST['target_page'])
-        )
+        'meta_input'    => $meta_input
     );
 
     return wp_insert_post($post_data);

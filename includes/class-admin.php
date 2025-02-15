@@ -8,7 +8,8 @@ class Doc_Publisher_Admin {
         add_action('wp_ajax_get_next_order', array($this, 'get_next_order_callback'));
         add_action('admin_notices', array($this, 'show_admin_notices'));
         add_action('wp_ajax_delete_document_file', array($this, 'handle_document_file_deletion'));
-        add_action('wp_ajax_publish_document', array($this, 'handle_document_publish'));
+        // Remove or comment out the duplicate publish handler:
+        // add_action('wp_ajax_publish_document', array($this, 'handle_document_publish'));
         add_action('init', array($this, 'remove_editor_from_document'), 100);
         add_action('wp_ajax_get_documents_for_page', array($this, 'get_documents_for_page_callback'));
         add_action('wp_ajax_update_documents_order', array($this, 'update_documents_order_callback'));
