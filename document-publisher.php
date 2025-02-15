@@ -2,7 +2,7 @@
 /*
 Plugin Name: Gestione Documenti Società Trasparente
 Description: Gestione e pubblicazione documenti per la sezione Società Trasparente
-Version: 1.80
+Version: 1.81
 Author: Andrea Gouchon
 Text Domain: doc-publisher
 Domain Path: /languages
