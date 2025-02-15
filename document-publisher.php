@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Gestione Documenti Società Trasparente
-Description: Gestione e pubblicazione documenti per la sezione Società Trasparente
-Version: 1.82
+Plugin Name: Gestione Documenti Amministrazione Trasparente
+Description: Gestione e pubblicazione documenti per la sezione Amministrazione Trasparente
+Version: 1.85
 Author: Andrea Gouchon
 Text Domain: doc-publisher
 Domain Path: /languages
@@ -17,7 +17,7 @@ function doc_publisher_check_elementor() {
     if (!did_action('elementor/loaded')) {
         add_action('admin_notices', function() {
             $message = sprintf(
-                'Gestione Documenti Società Trasparente richiede Elementor per funzionare. <a href="%s">Installa Elementor</a>.',
+                'Gestione Documenti Amministrazione Trasparente richiede Elementor per funzionare. <a href="%s">Installa Elementor</a>.',
                 admin_url('plugin-install.php?s=Elementor&tab=search&type=term')
             );
             echo '<div class="error"><p>' . $message . '</p></div>';
@@ -45,7 +45,7 @@ define('DOC_PUBLISHER_ALLOWED_TYPES', array(
 function modify_doc_publisher_menu_text($translated_text, $text, $domain) {
     switch ($translated_text) {
         case 'Gestione Documenti':
-            return 'Gestione Documenti Società Trasparente';
+            return 'Gestione Documenti Amministrazione Trasparente';
         default:
             return $translated_text;
     }

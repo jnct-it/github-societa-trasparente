@@ -16,19 +16,19 @@ class Doc_Publisher_Admin {
 
     public function add_menu_pages() {
         add_menu_page(
-            'Società Trasparente', // Changed title
-            'Società Trasparente', // Changed menu text
+            'Amministrazione Trasparente', // updated title
+            'Amministrazione Trasparente', // updated menu text
             'edit_posts',
             'document-publisher',
             array($this, 'render_publisher_page'),
             'dashicons-media-document',
-            20
+            2  // changed from 20 to 2
         );
         
         add_submenu_page(
             'document-publisher',
-            'Pubblica Documento', // Changed title
-            'Pubblica Documento', // Changed menu text
+            'Pubblica Documento',
+            'Pubblica Documento',
             'edit_posts',
             'document-publisher'
         );
