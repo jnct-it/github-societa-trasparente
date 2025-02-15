@@ -115,3 +115,24 @@ jobs:
           **/node_modules/**
           **/composer.json
           **/README.md
+          
+  deploy-proservice:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Deploy to Proservice
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ${{ secrets.SITE6_FTP_HOST }}
+        username: ${{ secrets.SITE6_FTP_USER }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./
+        server-dir: ${{ secrets.SITE6_FTP_PATH }}
+        exclude: |
+          **/.git*
+          **/.github/**
+          **/node_modules/**
+          **/composer.json
+          **/README.md
